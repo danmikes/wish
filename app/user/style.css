@@ -1,0 +1,13 @@
+.form-container {
+  background-color: var(--back-1);
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.form .label {
+  font-size: var(--medium);
+}
+
+.form .control {
+  font-size: var(--medium);
+}
