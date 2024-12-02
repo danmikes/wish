@@ -1,0 +1,18 @@
+name: Deploy to PythonAnywhere
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Trigger deployment webhook
+      uses: fjogeleit/http-request-action@v1
+      with:
+        url: ${{ secrets.DEPLOY_URL }}
+        method: 'GET'
+        customHeaders: '{"Authorisation": "Bearer ${{ secrets.DEPLOY_TOKEN }}"}'

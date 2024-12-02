@@ -1,0 +1,64 @@
+{
+  "theme": {
+    "color": "kleur",
+    "dark": "donker",
+    "light": "licht",
+    "theme": "thema"
+  },
+  "font": {
+    "font": "tekst",
+    "large": "groot",
+    "medium": "middel",
+    "small": "klein"
+  },
+  "lang": {
+    "czech": "čeština",
+    "dutch": "nederlands",
+    "english": "english",
+    "lang": "taal",
+    "russian": "русский"
+  },
+  "menu": {
+    "cancel": "annuleer",
+    "close": "sluit",
+    "esc": "esc",
+    "exit": "uit",
+    "info": "info",
+    "login": "meld aan",
+    "logout": "meld af",
+    "menu": "menu",
+    "register": "registreer",
+    "users": "gebruikers",
+    "zoom": "zoom"
+  },
+  "user": {
+    "add": "nieuw",
+    "cancel": "annuleer",
+    "delete": "verwijder",
+    "edit": "bewerk",
+    "password_confirm": "bevestig wachtwoord",
+    "password": "wachtwoord",
+    "user": "gebruiker",
+    "username": "gebruikersnaam",
+    "users": "gebruikers"
+  },
+  "wish": {
+    "add": "voeg toe",
+    "bought": "GEKOCHT",
+    "buy": "koop",
+    "cancel": "annuleer",
+    "delete": "verwijder",
+    "description": "beschrijving",
+    "edit": "bewerk",
+    "image": "plaatje",
+    "input": "invoer",
+    "link": "link",
+    "new": "nieuw",
+    "preview": "voorbeeld",
+    "prtscr": "prtScr",
+    "remove": "verwijder",
+    "save": "bewaar",
+    "wish": "wens",
+    "wishes": "wensen"
+  }
+}

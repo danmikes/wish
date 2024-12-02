@@ -1,0 +1,18 @@
+# Python 3.11 | pyany
+flask
+flask-admin
+flask-assets
+flask-login
+flask-sqlalchemy
+flask-wtf
+libsass
+pillow
+python-dotenv
+requests
+requests-file
+gitpython
+email_validator
+dnspython
+sqlalchemy
+werkzeug
+wtforms
