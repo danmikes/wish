@@ -1,0 +1,160 @@
+@mixin theme-color {
+  --back-1: #F0F4F8;
+  --back-2: #D9E2EC;
+  --back-3: #FEFCBF;
+  --bord-1: #9FB3C8;
+  --bord-2: #48BB78;
+  --bord-3: #4299E1;
+  --text-1: #2D3748;
+  --text-2: #4A5568;
+  --text-3: #718096;
+}
+
+@mixin theme-dark {
+  --back-1: var(--black);
+  --back-2: var(--darkgrey);
+  --back-3: var(--grey);
+  --bord-1: var(--darkgrey);
+  --bord-2: var(--grey);
+  --bord-3: var(--lightgrey);
+  --text-1: var(--white);
+  --text-2: var(--lightgrey);
+  --text-3: var(--grey);
+}
+
+@mixin theme-light {
+  --back-1: var(--white);
+  --back-2: var(--lightgrey);
+  --back-3: var(--grey);
+  --bord-1: var(--lightgrey);
+  --bord-2: var(--grey);
+  --bord-3: var(--darkgrey);
+  --text-1: var(--black);
+  --text-2: var(--darkgrey);
+  --text-3: var(--grey);
+}
+
+:root {
+  --black: #383838;
+  --darkgrey: #666;
+  --grey: #999;
+  --lightgrey: #d8d8d8;
+  --white: #e8e8e8;
+  --blue: lightblue;
+  --brown: #db8;
+  --green: lightgreen;
+  --red: pink;
+  --orange: orange;
+  --cyan: cyan;
+  --magenta: magenta;
+  --yellow: yellow;
+  color-scheme: light dark;
+  @include theme-color;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    @include theme-dark;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    @include theme-light;
+  }
+}
+
+[theme="color"] {
+  @include theme-color;
+}
+
+[theme="dark"] {
+  @include theme-dark;
+}
+
+[theme="light"] {
+  @include theme-light;
+}
+
+.back-1 {
+  background-color: var(--back-1);
+}
+
+.back-2 {
+  background-color: var(--back-2);
+}
+
+.back-3 {
+  background-color: var(--back-3);
+}
+
+.btn-1 {
+  background-color: var(--btn-1);
+  color: var(--black);
+}
+
+.btn-2 {
+  background-color: var(--btn-2);
+  color: var(--black);
+}
+
+.btn-3 {
+  background-color: var(--btn-3);
+  color: var(--black);
+}
+
+.bord-1 {
+  border-color: var(--bord-1);
+}
+
+.bord-2 {
+  border-color: var(--bord-2);
+}
+
+.bord-3 {
+  border-color: var(--bord-3);
+}
+
+.text-1 {
+  color: var(--text-1);
+}
+
+.text-2 {
+  color: var(--text-2);
+}
+
+.text-3 {
+  color: var(--text-3);
+}
+
+.blue {
+  background-color: var(--blue);
+}
+
+.brown {
+  background-color: var(--brown);
+}
+
+.green {
+  background-color: var(--green);
+}
+
+.red {
+  background-color: var(--red);
+}
+
+.orange {
+  background-color: var(--orange);
+}
+
+.cyan {
+  color: var(--cyan) !important;
+}
+
+.magenta {
+  color: var(--magenta) !important;
+}
+
+.yellow {
+  color: var(--yellow) !important;
+}

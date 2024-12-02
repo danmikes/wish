@@ -1,0 +1,142 @@
+{% set _menu=content.menu %}
+
+<header class="header">
+  <div class="header-container">
+    <div class="navbar-theme navbar-item has-dropdown is-hoverable"
+      hx-on:click="event.stopPropagation();
+        this.querySelector('.navbar-dropdown').classList.toggle('is-active');
+        document.querySelectorAll('.navbar-dropdown').forEach(d => {
+          if (d !== this.querySelector('.navbar-dropdown')) d.classList.remove('is-active');
+        })"
+    >
+      <a class="navbar-link" id="ThemeMenuToggle">
+        🎨
+      </a>
+      <div class="navbar-dropdown" id="themeMenu">
+        <a class="navbar-item" href="{{ url_for('base.toggle_theme', theme='color') }}">
+          <span class="emoji">🌈</span>
+        </a>
+        <a class="navbar-item" href="{{ url_for('base.toggle_theme', theme='dark') }}">
+          <span class="emoji">⚫</span>
+        </a>
+        <a class="navbar-item" href="{{ url_for('base.toggle_theme', theme='light') }}">
+          <span class="emoji">⚪</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="navbar-font navbar-item has-dropdown is-hoverable"
+      hx-on:click="event.stopPropagation();
+        this.querySelector('.navbar-dropdown').classList.toggle('is-active');
+        document.querySelectorAll('.navbar-dropdown').forEach(d => {
+          if (d !== this.querySelector('.navbar-dropdown')) d.classList.remove('is-active');
+        })"
+    >
+      <a class="navbar-link" id="fontMenuToggle">
+        A
+      </a>
+      <div class="navbar-dropdown" id="fontMenu">
+        <a class="navbar-item" href="{{ url_for('base.toggle_font', font='large') }}">
+          <span class="large">A</span>
+        </a>
+        <a class="navbar-item" href="{{ url_for('base.toggle_font', font='medium') }}">
+          <span class="medium">A</span>
+        </a>
+        <a class="navbar-item" href="{{ url_for('base.toggle_font', font='small') }}">
+          <span class="small">A</span>
+        </a>
+      </div>
+    </div>
+
+    <div id="flash-messages" class="notifications" hx-swap-oob="true">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="notification is-{{ category }}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    </div>
+
+    <div class="navbar-language navbar-item has-dropdown is-hoverable"
+      hx-on:click="event.stopPropagation();
+        this.querySelector('.navbar-dropdown').classList.toggle('is-active');
+        document.querySelectorAll('.navbar-dropdown').forEach(d => {
+          if (d !== this.querySelector('.navbar-dropdown')) d.classList.remove('is-active');
+        })"
+    >
+      <a class="navbar-link" id="LanguageMenuToggle">
+        🌐
+      </a>
+      <div class="navbar-dropdown" id="LanguageMenu">
+        <a class="navbar-item" href="{{ url_for('base.toggle_lang', lang='en') }}">
+          <span class="emoji">🇬🇧</span>
+        </a>
+        <a class="navbar-item" href="{{ url_for('base.toggle_lang', lang='cz') }}">
+          <span class="emoji">🇨🇿</span>
+        </a>
+        <a class="navbar-item" href="{{ url_for('base.toggle_lang', lang='nl') }}">
+          <span class="emoji">🇳🇱</span>
+        </a>
+        <a class="navbar-item" href="{{ url_for('base.toggle_lang', lang='ru') }}">
+          <span class="emoji">🇷🇺</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="navbar-main navbar-item has-dropdown is-hoverable"
+      hx-on:click="event.stopPropagation();
+        this.querySelector('.navbar-dropdown').classList.toggle('is-active');
+        document.querySelectorAll('.navbar-dropdown').forEach(d => {
+          if (d !== this.querySelector('.navbar-dropdown')) d.classList.remove('is-active');
+        })">
+      <div class="navbar-link" id="mainMenuToggle">
+        ☰
+      </div>
+      <div class="navbar-dropdown" id="mainMenu">
+        <a class="navbar-item" hx-on:click="document.getElementById('infoModal').classList.add('is-active')">
+          <span class="emoji">🤔</span>
+        </a>
+        {% if current_user.is_authenticated %}
+          <a class="navbar-item" href="{{ url_for('user.user_logout') }}">
+            <span class="emoji">❌</span>
+          </a>
+          {% if current_user.id == config.ADMIN_ID %}
+            <a class="navbar-item" href="{{ url_for('admin.index') }}">
+              <span class="emoji">⚙️</span>
+            </a>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="modal" id="infoModal">
+      <div class="modal-background" hx-on:click="this.closest('.modal').classList.remove('is-active')"></div>
+
+      <div class="modal-content box back-2">
+        {% include 'base/info.htm' %}
+        <button class="button is-light"
+            hx-on:click="this.closest('.modal').classList.remove('is-active')">
+          {{ _menu.close }}
+        </button>
+      </div>
+
+      <button class="modal-close is-large"
+        aria-label="close"
+        hx-on:click="this.closest('.modal').classList.remove('is-active')"></button>
+    </div>
+
+  </div>
+</header>
+
+<div hx-on:click="document.querySelectorAll('.navbar-dropdown').forEach(d => d.classList.remove('is-active'))" style="display: none;"></div>
+
+<script>
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      document.getElementById('infoModal')?.classList.remove('is-active');
+    }
+  });
+</script>

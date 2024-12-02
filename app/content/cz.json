@@ -1,0 +1,64 @@
+{
+  "theme": {
+    "color": "barevný",
+    "dark": "tmavý",
+    "light": "světlý",
+    "theme": "téma"
+  },
+  "font": {
+    "font": "text",
+    "large": "velký",
+    "medium": "střední",
+    "small": "malý"
+  },
+  "lang": {
+    "czech": "čeština",
+    "dutch": "nederlands",
+    "english": "english",
+    "lang": "jazyk",
+    "russian": "русский"
+  },
+  "menu": {
+    "cancel": "zrušit",
+    "close": "uzavřít",
+    "esc": "esc",
+    "exit": "konec",
+    "info": "info",
+    "login": "přihlásit",
+    "logout": "odhlásit",
+    "menu": "menu",
+    "register": "registrovat",
+    "users": "uživatelé",
+    "zoom": "yvětšit"
+  },
+  "user": {
+    "add": "přidat",
+    "cancel": "zrušit",
+    "delete": "smazat",
+    "edit": "upravit",
+    "password_confirm": "potvrďte heslo",
+    "password": "heslo",
+    "user": "uživatel",
+    "username": "uživatelské jméno",
+    "users": "uživatelé"
+  },
+  "wish": {
+    "add": "přidat",
+    "bought": "KOUPENO",
+    "buy": "koupit",
+    "cancel": "zrušit",
+    "delete": "smazat",
+    "description": "popis",
+    "edit": "upravit",
+    "image": "obrázek",
+    "input": "vstup",
+    "link": "odkaz",
+    "new": "Nové",
+    "preview": "náhled",
+    "prtscr": "prtscr",
+    "remove": "odstranit",
+    "save": "uložit",
+    "wish": "přání",
+    "wishes": "přání"
+  }
+}

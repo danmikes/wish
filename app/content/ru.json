@@ -1,0 +1,64 @@
+{
+  "theme": {
+    "color": "цвет",
+    "dark": "тёмная",
+    "light": "светлая",
+    "theme": "тема"
+  },
+  "font": {
+    "font": "шрифт",
+    "large": "крупный",
+    "medium": "средний",
+    "small": "мелкий"
+  },
+  "lang": {
+    "czech": "čeština",
+    "dutch": "nederlands",
+    "english": "english",
+    "lang": "язык",
+    "russian": "русский"
+  },
+  "menu": {
+    "cancel": "отмена",
+    "close": "закрыть",
+    "esc": "esc",
+    "exit": "выход",
+    "info": "инфо",
+    "login": "войти",
+    "logout": "выйти",
+    "menu": "меню",
+    "register": "регистрация",
+    "users": "пользователи",
+    "zoom": "масштаб"
+  },
+  "user": {
+    "add": "добавить",
+    "cancel": "отмена",
+    "delete": "удалить",
+    "edit": "редактировать",
+    "password_confirm": "подтвердить пароль",
+    "password": "пароль",
+    "user": "пользователь",
+    "username": "имя пользователя",
+    "users": "пользователи"
+  },
+  "wish": {
+    "add": "добавить",
+    "bought": "КУПЛЕНО",
+    "buy": "купить",
+    "cancel": "отмена",
+    "delete": "удалить",
+    "description": "описание",
+    "edit": "редактировать",
+    "image": "изображение",
+    "input": "ввод",
+    "link": "ссылка",
+    "new": "новое",
+    "preview": "превью",
+    "prtscr": "скриншот (prtscr)",
+    "remove": "удалить",
+    "save": "сохранить",
+    "wish": "желание",
+    "wishes": "желания"
+  }
+}

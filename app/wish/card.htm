@@ -1,0 +1,28 @@
+{% set _wish=content.wish %}
+
+<div class="card {% if prop.is_bought and not prop.is_owner%}is-bought{% endif %} {% if prop.is_bought and not prop.is_buyer %}is-not-buyer{% endif %}" data-bought="{{ _wish.bought }}" data-id="{{ prop.id }}" style="transition: transform 0.3s;">
+  <div class="card-header">
+    <p>{{ prop.description }}</p>
+  </div>
+
+  <div class="card-content">
+    {% if prop.url and prop.domain %}
+      <a href="{{ prop.url }}" target="_blank">{{ prop.domain }}</a>
+    {% endif %}
+  </div>
+
+  <div class="card-image">
+    {% if prop.image %}
+      <img src="{{ url_for('util.upload_file', filename=prop.image) }}" alt="Image for {{ prop.image }}">
+    {% endif %}
+  </div>
+
+  <div class="card-footer">
+    {% if prop.is_owner %}
+      <a href="{{ url_for('wish.wish_edit', wish_id=prop.id) }}" class="button blue">{{ _wish.edit }}</a>
+      <a href="{{ url_for('wish.wish_delete', wish_id=prop.id) }}" class="button red" onclick="return confirm('Delete this wish?');">{{ _wish.delete }}</a>
+    {% else %}
+      <a href="{{ url_for('wish.wish_toggle', wish_id=prop.id) }}" class="button {% if prop.is_buyer %}red{% elif prop.is_bought %}is-static{% else %}green{% endif %}">{% if prop.is_buyer %}{{ _wish.cancel }}{% elif prop.is_bought%}{%else %}{{ _wish.buy }}{% endif %}</a>
+    {% endif %}
+  </div>
+</div>
