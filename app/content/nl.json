@@ -1,0 +1,63 @@
+{
+  "theme": {
+    "theme": "thema",
+    "color": "kleur",
+    "dark": "donker",
+    "light": "licht"
+  },
+  "font": {
+    "font": "tekst",
+    "large": "groot",
+    "medium": "middel",
+    "small": "klein"
+  },
+  "lang": {
+    "lang": "taal",
+    "czech": "čeština",
+    "english": "english",
+    "dutch": "nederlands",
+    "russian": "русский"
+  },
+  "menu": {
+    "menu": "menu",
+    "info": "info",
+    "exit": "uit",
+    "close": "sluit",
+    "esc": "esc",
+    "zoom": "zoom",
+    "login": "meld aan",
+    "logout": "meld af",
+    "register": "registreer",
+    "cancel": "annuleer",
+    "users": "gebruikers"
+  },
+  "user": {
+    "user": "gebruiker",
+    "username": "gebruikersnaam",
+    "password": "wachtwoord",
+    "password_confirm": "bevestig wachtwoord",
+    "users": "gebruikers",
+    "add": "nieuw",
+    "edit": "bewerk",
+    "delete": "verwijder",
+    "cancel": "annuleer"
+  },
+  "wish": {
+    "wish": "wens",
+    "wishes": "wensen",
+    "new": "nieuw",
+    "edit": "bewerk",
+    "save": "bewaar",
+    "delete": "verwijder",
+    "image": "plaatje",
+    "add": "voeg toe",
+    "remove": "verwijder",
+    "prtscr": "prtScr",
+    "description": "beschrijving",
+    "link": "link",
+    "buy": "koop",
+    "cancel": "annuleer",
+    "input": "invoer",
+    "preview": "voorbeeld"
+  }
+}

@@ -1,0 +1,18 @@
+# python
+__pycache__/
+.pytest_cache/
+.venv/
+
+# develop
+.vscode/
+.flaskenv
+*.log
+.webassets-cache/
+
+# system
+.DS_Store
+
+# run
+app/upload/
+instance/
+script/

@@ -1,0 +1,71 @@
+{% extends 'base/base.htm' %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('user.static', filename='style.css') }}">
+{% endblock %}
+
+{% block title %}Register{% endblock %}
+
+{% set _menu=content.menu %}
+{% set _user=content.user %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column mobile-width mt-2">
+        <h1 class="title">{{ _menu.register }}</h1>
+
+        <div class="form-container">
+          <form class="form" method="POST" action="{{ url_for('user.user_register') }}">
+            {{ form.hidden_tag() }}
+
+            <div class="field">
+              <label class="label">{{ _user.username }}</label>
+              <div class="control">{{ form.username(class="input") }}</div>
+              {% if form.username.errors %}
+                <ul class="errors">
+                  {% for error in form.username.errors %}
+                    <li>{{ error }}</li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </div>
+
+            <div class="field">
+              <label class="label">{{ _user.password }}</label>
+              <div class="control">{{ form.password(class="input") }}</div>
+              {% if form.password.errors %}
+                <ul class="errors">
+                  {% for error in form.password.errors %}
+                    <li>{{ error }}</li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </div>
+
+            <div class="field">
+              <label class="label">{{ _user.password_confirm }}</label>
+              <div class="control">{{ form.confirm_password(class="input") }}</div>
+              {% if form.confirm_password.errors %}
+                <ul class="errors">
+                  {% for error in form.confirm_password.errors %}
+                    <li>{{ error }}</li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </div>
+
+            <div class="field" style="margin-top: 20px;">
+              <div class="control is-flex">
+                <button type="submit" class="button green" style="width: 50%; margin-right: 5px;">{{ _menu.register }}</button>
+                <a href="{{ url_for('user.users')}}" class="button brown" style="width: 50%; margin-left: 5px;">{{ _menu.cancel }}</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

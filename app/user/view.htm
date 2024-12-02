@@ -1,0 +1,34 @@
+{% extends 'base/base.htm' %}
+
+{% set _user=content.user %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('user.static', filename='style.css') }}">
+{% endblock %}
+
+{% block title %}{{ _user.users }}{% endblock %}
+
+{% block content %}
+<div class="container">
+  <a href="{{ url_for('user.user_register') }}" class="button blue mb-4" style="width: 5rem;">{{ _user.add }}</a>
+  {% if users_they and users_they|length > 0 %}
+  <div class="columns is-multiline is-centered is-variable is-3 is-mobile mb-0">
+    {% for user in users_they %}
+    <div class="column is-narrow">
+      <div class="box">
+        <div class="is-flex is-align-items-center is-justify-content-space-between">
+          <span class="subtitle mb-0">{{ user.username }}</span>
+          <div class="ml-auto">
+            <a href="{{ url_for('user.user_remove', user_id=user.id) }}" class="button red small ml-2">{{ _user.delete }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <a href="{{ url_for('base.index') }}" class="button brown">{{ _user.cancel }}</a>
+  {% else %}
+  <p>No users</p>
+  {% endif %}
+</div>
+{% endblock %}

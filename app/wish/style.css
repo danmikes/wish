@@ -1,0 +1,247 @@
+.tabs ul {
+  display: flex;
+  flex-wrap: wrap;
+  flex-shrink: 1;
+  justify-content: center;
+  list-style-type: none;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.is-active {
+  display: block;
+}
+
+.tabs {
+  overflow-x: hidden;
+}
+
+.tabs ul {
+  border-bottom-color: var(--brown);
+}
+
+.tabs ul li a {
+  border-top-left-radius: 8px !important;
+  border-top-right-radius: 8px !important;
+  border: 2px solid var(--back-3);
+  border-bottom-color: transparent;
+  background-color: var(--back-2) !important;
+}
+
+#tab-current-user + li {
+  margin-left: 10px;
+}
+
+.tab-link + li {
+  margin-left: 5px;
+}
+
+.tabs li.is-active a {
+  border: 2px solid darkorange;
+  background-color: var(--back-3) !important;
+}
+
+.column,
+.columns {
+  max-width: 100%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: var(--size);
+  max-width: 100%;
+  height: calc(var(--size)*1.25);
+  padding: 10px;
+  background-color: var(--back-1);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+@media (max-width: 468px) {
+  .card {
+    width: 100%;
+    height: auto;
+    min-height: var(--size);
+  }
+}
+
+@media screen and (max-width: 360px) and (min-height: 740px) {
+  .card {
+    width: 95%;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 359px) and (max-height: 739px) {
+  .card {
+    width: 85%;
+    margin: 0 auto;
+  }
+}
+
+.card-header,
+.card-content,
+.card-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-footer a {
+  flex: 1;
+}
+
+.card-header,
+.card-content,
+.card-footer {
+  flex: 0;
+}
+
+.card-header {
+  align-items: flex-start;
+  border-bottom: 1px solid var(--bord-2)
+}
+
+.card-header p {
+  display: flex;
+  color: var(--text-1) !important;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.card-header,
+.card-header p {
+  margin-bottom: 1px;
+}
+
+.card-content {
+  padding: 2px;
+}
+
+.card-content a {
+  color: var(--magenta) !important;
+  margin-bottom: auto;
+}
+
+.card-image {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.card-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.card-footer,
+.card-footer a {
+  margin-top: 5px;
+}
+
+.card-footer a:not(:last-child) {
+  margin-right: 5px;
+}
+
+.card.is-bought {
+  position: relative;
+  opacity: 0.5;
+  z-index: 10;
+}
+
+.card.is-bought::after {
+  content: 'BOUGHT';
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  font-size: var(--huge);
+  font-weight: bold;
+  font-family: 'Lino Stamp';
+  color: var(--red);
+  transform: translate(-50%, 0%) rotate(-45deg);
+  z-index: 2;
+}
+
+.card.is-not-buyer {
+  opacity: 0.1;
+}
+
+.card-add {
+  position: relative;
+}
+
+.card-header .description,
+.textarea {
+  min-height: 6em;
+  max-height: 7em;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  padding: 5px;
+}
+
+.textarea,
+.input {
+  font-size: var(--large);
+}
+
+.card-form {
+  padding: 10px !important;
+}
+
+.columns.is-centered {
+  margin: 0 !important;
+  padding: 0 !important;
+  justify-content: center;
+}
+
+.column.is-narrow {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 400px;
+}
+
+@media (max-width: 768px) and (orientation: portrait) {
+  .column.is-narrow {
+    width: 100%;
+  }
+}
+
+@media (max-width: 468px) and (orientation: portrait) {
+  .column.is-narrow {
+    min-width: 400px;
+  }
+}
+
+.display .button {
+  background-color: var(--green) !important;
+}
+
+.control.has-addons .button {
+  flex-grow: 1;
+}
+
+.box .topic:not(:first-of-type) {
+  margin-top: 20px;
+}
+
+.button {
+  z-index: 0;
+}
+
+.modal .button {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.columns {
+  background-color: var(--back-2);
+  border-radius: 20px;
+}

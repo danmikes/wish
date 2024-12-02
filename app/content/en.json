@@ -1,0 +1,63 @@
+{
+  "theme": {
+    "theme": "theme",
+    "color": "color",
+    "dark": "dark",
+    "light": "light"
+  },
+  "font": {
+    "font": "text",
+    "large": "large",
+    "medium": "medium",
+    "small": "small"
+  },
+  "lang": {
+    "lang": "language",
+    "czech": "čeština",
+    "english": "english",
+    "dutch": "nederlands",
+    "russian": "русский"
+  },
+  "menu": {
+    "menu": "menu",
+    "info": "info",
+    "exit": "exit",
+    "close": "close",
+    "esc": "esc",
+    "zoom": "zoom",
+    "login": "log-in",
+    "logout": "log-out",
+    "register": "register",
+    "cancel": "cancel",
+    "users": "users"
+  },
+  "user": {
+    "user": "user",
+    "username": "username",
+    "password": "password",
+    "password_confirm": "confirm password",
+    "users": "users",
+    "add": "add",
+    "edit": "edit",
+    "delete": "delete",
+    "cancel": "cancel"
+  },
+  "wish": {
+    "wish": "Wish",
+    "wishes": "wishes",
+    "new": "new",
+    "edit": "edit",
+    "save": "save",
+    "delete": "delete",
+    "image": "image",
+    "add": "add",
+    "remove": "remove",
+    "prtscr": "prtscr",
+    "description": "description",
+    "link": "link",
+    "buy": "buy",
+    "cancel": "cancel",
+    "input": "input",
+    "preview": "preview"
+  }
+}
