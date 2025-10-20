@@ -24,8 +24,10 @@ def config_app(app):
     'SQLALCHEMY_DATABASE_URI': 'sqlite:///data.db',
     'SQLALCHEMY_TRACK_MODIFICATIONS': False,
     'UPLOAD_FOLDER': Path(app.root_path) / 'upload',
-    'WORKING_DIRECTORY': '/home/dmikes/flask',
+    'WORKING_DIRECTORY': '/home/dmikes/wish',
     'WSGI_PATH': '/var/www/dmikes_eu_pythonanywhere_com_wsgi.py',
+    'REPO_WSGI_PATH': '/home/dmikes/wish/conf/wsgi.py',
+    'GITHUB_REPO': 'https://github.com/danmikes/wish.git',
   })
 
   Path(app.config['UPLOAD_FOLDER']).mkdir(parents=True, exist_ok=True)

@@ -1,4 +1,5 @@
 import os
+import shutil
 from flask import Blueprint, current_app, jsonify, request, send_from_directory
 from flask_login import login_required
 from git import Repo
@@ -52,6 +53,12 @@ def update():
     origin = repo.remotes.origin
     origin.fetch()
     repo.git.reset('--hard', 'origin/main')
+
+    repo_wsgi = current_app.config['REPO_WSGI_PATH']
+    pa_wsgi = current_app.config['WSGI_PATH']
+
+    if os.path.exists(repo_wsgi) and os.path.exists(pa_wsgi):
+      shutil.copy2(repo_wsgi, pa_wsgi)
 
     os.system(f"touch {current_app.config['WSGI_PATH']}")
     return 'PythonAnywhere updated', 200

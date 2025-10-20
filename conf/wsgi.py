@@ -1,8 +1,8 @@
 import sys
 
-from app import create_app
-application = create_app()
-
-path = '/home/dmikes/flask'
+path = '/home/dmikes/wish'
 if path not in sys.path:
   sys.path.append(path)
+
+from app import create_app
+application = create_app()
