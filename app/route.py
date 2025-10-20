@@ -1,11 +1,14 @@
-from flask import Blueprint, redirect, render_template, request, session, url_for
-from .util.logger import log
+from flask import Blueprint, redirect, render_template, session, url_for
+from flask_login import current_user
 
-base = Blueprint('base', __name__, url_prefix='/', static_folder='.', template_folder='.')
+base = Blueprint('base', __name__, static_folder='.', template_folder='.')
 
 @base.route('/')
 def index():
-  return render_template('index.htm')
+  if current_user.is_authenticated:
+    return redirect(url_for('wish.wishes'))
+  else:
+    return redirect(url_for('user.user_login'))
 
 # default = color
 @base.route('/toggle_theme/<theme>')

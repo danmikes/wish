@@ -1,61 +1,52 @@
 import json
 import os
-from flask import redirect, url_for
+from flask import current_app, redirect, url_for
 from flask_assets import Environment, Bundle
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
-from pathlib import Path
 from .util.logger import log
 from .util.enum import AllowedExtension
+
+project_root = os.path.dirname(os.path.dirname(__file__))
+db_path = os.path.join(project_root, 'instance', 'data.db')
+os.makedirs(os.path.dirname(db_path), exist_ok=True)
 
 csrf = CSRFProtect()
 db = SQLAlchemy()
 login_manager = LoginManager()
+login_manager.login_view = 'user.user_login'
 
 def config_app(app):
   app.config.update({
     'ADMIN_USERNAME': 'daniel',
     'ALLOWED_EXTENSIONS': AllowedExtension.as_set(),
-    'SECRET_KEY': 'top_secret',
+    'SECRET_KEY': os.environ.get('SECRET_KEY', 'dev-fallback-key'),
     'SESSION_COOKIE_HTTPONLY': True,
     'SESSION_COOKIE_SAMESITE': 'Lax',
-    'SESSION_COOKIE_SECURE': True,
-    'SQLALCHEMY_DATABASE_URI': 'sqlite:///data.db',
+    'SESSION_COOKIE_SECURE': os.environ.get('FLASK_ENV') == 'production',
+    'SQLALCHEMY_DATABASE_URI': f'sqlite:///{db_path}?check_same_thread=False',
     'SQLALCHEMY_TRACK_MODIFICATIONS': False,
-    'UPLOAD_FOLDER': Path(app.root_path) / 'upload',
-    'WORKING_DIRECTORY': '/home/dmikes/wish',
-    'WSGI_PATH': '/var/www/dmikes_eu_pythonanywhere_com_wsgi.py',
+    'UPLOAD_FOLDER': os.path.join(app.root_path, 'upload'),
   })
 
-  Path(app.config['UPLOAD_FOLDER']).mkdir(parents=True, exist_ok=True)
+  os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 def initialise_extensions(app):
   csrf.init_app(app)
-  from .util.route import update
-  csrf.exempt(update)
   db.init_app(app)
   login_manager.init_app(app)
 
 def initialise_database(app):
   with app.app_context():
-    from .user.model import User
-    from .wish.model import Wish
-    try:
-      db.create_all()
-    except Exception as e:
-      log.error(f'Error creating database tables: {e}')
+    db.create_all()
 
 def register_blueprints(app):
   from .blueprint import register_route
-  try:
-    register_route(app)
-  except ImportError as e:
-    log.error(f'Error importing blueprint: {e}')
+  register_route(app)
 
 def build_assets(app):
   assets = Environment(app)
-
   scss = Bundle('style.css',
                 'color.scss',
                 filters='libsass',
@@ -65,8 +56,7 @@ def build_assets(app):
   scss.build()
 
 def load_content(lang):
-  file_path = os.path.join('app/content', f'{lang}.json')
-
+  file_path = os.path.join(current_app.root_path, 'content', f'{lang}.json')
   try:
     with open(file_path, 'r', encoding='utf-8') as f:
       return json.load(f)
@@ -77,11 +67,7 @@ def load_content(lang):
 @login_manager.user_loader
 def load_user(user_id):
   from .user.model import User
-  try:
-    return User.query.get(int(user_id))
-  except Exception as e:
-     log.error(f'Error loading user: {e}')
-     return None
+  return User.query.get(int(user_id))
 
 @login_manager.unauthorized_handler
 def unauthorized():

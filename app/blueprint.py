@@ -1,5 +1,3 @@
-from flask import Blueprint
-
 from .route import base
 from .user.route import user
 from .util.route import util

@@ -1,5 +1,6 @@
 import os
 from flask import Flask, current_app, g, session
+from dotenv import load_dotenv
 from .function import (
   build_assets,
   config_app,
@@ -12,7 +13,6 @@ from .function import db
 
 def create_app():
   app = Flask(__name__, static_folder='/', template_folder='/')
-  app.config['APPLICATION_ROOT'] = '/wish'
 
   @app.before_request
   def before_request():

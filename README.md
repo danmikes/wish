@@ -3,7 +3,7 @@
 - Flask Python Jinja Bulma
 
 ## Code
-- [github](https://github.com/danmikes/wish)
+- [github](https://github.com/danmikes)
 
 ## Copy
 - `wsgi.py -> pythonanywhere`
@@ -14,5 +14,5 @@
 
 ## Deploy
 - `git push`
-- [health](https://dmikes.eu.pythonanywhere.com/wish/health)
-- [view](https://dmikes.eu.pythonanywhere.com/wish)
+- [health](https://dmikes.eu.pythonanywhere.com/health)
+- [view](https://dmikes.eu.pythonanywhere.com)
