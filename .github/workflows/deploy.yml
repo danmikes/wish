@@ -9,6 +9,6 @@ jobs:
   call-webhook:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger webhook
+      - name: Trigger deploy
         run: |
           curl -f -X POST https://dmikes.eu.pythonanywhere.com/util/update
