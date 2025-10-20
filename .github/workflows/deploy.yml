@@ -11,4 +11,4 @@ jobs:
     steps:
       - name: Trigger deploy
         run: |
-          curl -f -X POST https://dmikes.eu.pythonanywhere.com/util/update
+          curl -f -X POST https://dmikes.eu.pythonanywhere.com/wish/util/update

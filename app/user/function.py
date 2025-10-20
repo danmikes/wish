@@ -1,6 +1,6 @@
 from flask import flash, redirect, url_for
 from flask_login import login_user
-from werkzeug.urls import url_parse
+from urllib.parse import urlparse
 from ..util.flash import flash_errors
 from .. import db
 from ..wish.model import Wish
@@ -14,7 +14,7 @@ def handle_login(form, request):
         login_user(user)
         flash('You logged-in', 'info')
         next = request.args.get('next')
-        if not next or url_parse(next).netloc != '':
+        if not next or urlparse(next).netloc != '':
           next = url_for('wish.wishes')
         return redirect(next)
       else:

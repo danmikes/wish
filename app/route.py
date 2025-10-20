@@ -27,4 +27,4 @@ def toggle_lang(lang):
 
 @base.route('/health')
 def health():
-  return {'status': 'healthy', 'service': 'dmikes.eu.pythonanywhere.com'}, 200
+  return {'status': 'healthy'}, 200

@@ -12,6 +12,7 @@ from .function import db
 
 def create_app():
   app = Flask(__name__, static_folder='/', template_folder='/')
+  app.config['APPLICATION_ROOT'] = '/wish'
 
   @app.before_request
   def before_request():

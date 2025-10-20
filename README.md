@@ -14,5 +14,5 @@
 
 ## Deploy
 - `git push`
-- [health](https://dmikes.eu.pythonanywhere.com/health)
-- [view](https://dmikes.eu.pythonanywhere.com)
+- [health](https://dmikes.eu.pythonanywhere.com/wish/health)
+- [view](https://dmikes.eu.pythonanywhere.com/wish)

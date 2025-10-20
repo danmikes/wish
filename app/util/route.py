@@ -54,12 +54,6 @@ def update():
     origin.fetch()
     repo.git.reset('--hard', 'origin/main')
 
-    repo_wsgi = current_app.config['REPO_WSGI_PATH']
-    pa_wsgi = current_app.config['WSGI_PATH']
-
-    if os.path.exists(repo_wsgi) and os.path.exists(pa_wsgi):
-      shutil.copy2(repo_wsgi, pa_wsgi)
-
     os.system(f"touch {current_app.config['WSGI_PATH']}")
     return 'PythonAnywhere updated', 200
   else:
