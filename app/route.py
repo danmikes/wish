@@ -36,14 +36,21 @@ def health():
 
 @base.route('/update')
 def update():
-  secret = os.environ.get('DEPLOY_SECRET')
-  if request.args.get('secret') != secret:
-    return 'Invalid secret', 401
+  auth_header = request.headers.get('Authorization')
+  if not auth_header or not auth_header.startswith('Bearer '):
+    return 'Missing or invalid Authorization header', 401
 
-  repo = Repo('/home/dmikes/wish')
+  token = auth_header.replace('Bearer ', '')
+  token_expect = os.environ.get('DEPLOY_TOKEN')
+  if token != token_expect:
+    return 'Invalid token', 401
+
+  work_dir = os.environ.get('WORK_DIR')
+  repo = Repo(work_dir)
   origin = repo.remotes.origin
   origin.fetch()
   repo.git.reset('--hard', 'origin/main')
 
-  os.system("touch /var/www/dmikes_pythonanywhere_com_wsgi.py")
+  wsgi_path = os.environ.get('WSGI_PATH')
+  os.system(f'touch {wsgi_path}')
   return 'Updated successfully', 200

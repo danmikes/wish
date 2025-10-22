@@ -26,10 +26,6 @@ def create_app():
   def inject_admin_username():
     return dict(ADMIN_USERNAME=current_app.config['ADMIN_USERNAME'])
 
-  @app.context_processor
-  def inject_build_date():
-    return {'build': datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
-
   config_app(app)
   initialise_extensions(app)
   initialise_database(app)

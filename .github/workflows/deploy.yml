@@ -9,4 +9,4 @@ jobs:
     steps:
       - name: Trigger deploy
         run: |
-          curl https://dmikes.eu.pythonanywhere.com/update?secret=${{ secrets.DEPLOY_SECRET }}
+          curl -f -H "Authorization: Bearer ${{ secrets.DEPLOY_TOKEN }}" "${{ secrets.DEPLOY_URL }}"
