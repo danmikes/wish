@@ -1,5 +1,4 @@
 __pycache__/
-.flaskenv
 .venv/
 .vscode/
 .webassets-cache/

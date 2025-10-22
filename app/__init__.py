@@ -1,6 +1,5 @@
-import os
 from flask import Flask, current_app, g, session
-from dotenv import load_dotenv
+from datetime import datetime
 from .function import (
   build_assets,
   config_app,
@@ -26,6 +25,10 @@ def create_app():
   @app.context_processor
   def inject_admin_username():
     return dict(ADMIN_USERNAME=current_app.config['ADMIN_USERNAME'])
+
+  @app.context_processor
+  def inject_build_date():
+    return {'build': datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 
   config_app(app)
   initialise_extensions(app)
