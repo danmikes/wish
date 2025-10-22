@@ -1,5 +1,7 @@
-from flask import Blueprint, redirect, render_template, session, url_for
+import os
+from flask import Blueprint, redirect, request, session, url_for
 from flask_login import current_user
+from git import Repo
 
 base = Blueprint('base', __name__, static_folder='.', template_folder='.')
 
@@ -31,3 +33,17 @@ def toggle_lang(lang):
 @base.route('/health')
 def health():
   return {'status': 'healthy'}, 200
+
+@base.route('/update')
+def update():
+  secret = os.environ.get('DEPLOY_SECRET')
+  if request.args.get('secret') != secret:
+    return 'Invalid secret', 401
+
+  repo = Repo('/home/dmikes/wish')
+  origin = repo.remotes.origin
+  origin.fetch()
+  repo.git.reset('--hard', 'origin/main')
+
+  os.system("touch /var/www/dmikes_pythonanywhere_com_wsgi.py")
+  return 'Updated successfully', 200

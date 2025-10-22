@@ -1,16 +1,12 @@
 name: Deploy to PythonAnywhere
 
 on:
-# ToDo : auto-deploy
-  # push:
-  #   branches: [ main ]
   workflow_dispatch:
 
-# ToDo : ssh-update
 jobs:
   call-webhook:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger deploy
         run: |
-          curl -f -X POST https://dmikes.eu.pythonanywhere.com/update
+          curl https://dmikes.eu.pythonanywhere.com/update?secret=${{ secrets.DEPLOY_SECRET }}
