@@ -1,6 +1,7 @@
+__pycache__/
+.flaskenv
 .venv/
 .vscode/
-__pycache__/
 .webassets-cache/
 app/upload/
 instance/

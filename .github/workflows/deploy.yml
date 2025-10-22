@@ -1,6 +1,7 @@
 name: Deploy to PythonAnywhere
 
 on:
+# ToDo : auto-deploy
   # push:
   #   branches: [ main ]
   workflow_dispatch:
