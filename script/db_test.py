@@ -27,12 +27,12 @@ app = create_app()
 with app.app_context():
   db.drop_all()
   db.create_all()
-  
+
   user = User(username='daniel', password='daniel')
   wish = Wish(owner=user, description='wish')
-  
+
   db.session.add(user)
   db.session.add(wish)
   db.session.commit()
-  
+
   print("Database initialized")

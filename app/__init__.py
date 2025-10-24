@@ -1,5 +1,4 @@
 from flask import Flask, current_app, g, session
-from datetime import datetime
 from .function import (
   build_assets,
   config_app,

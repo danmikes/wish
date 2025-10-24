@@ -3,7 +3,7 @@
 <header class="header">
   <div class="header-container">
     <div class="navbar-theme navbar-item has-dropdown is-hoverable"
-      hx-on:click="event.stopPropagation(); 
+      hx-on:click="event.stopPropagation();
         this.querySelector('.navbar-dropdown').classList.toggle('is-active');
         document.querySelectorAll('.navbar-dropdown').forEach(d => {
           if (d !== this.querySelector('.navbar-dropdown')) d.classList.remove('is-active');
@@ -75,7 +75,7 @@
     </div>
 
     <div class="navbar-main navbar-item has-dropdown is-hoverable"
-      hx-on:click="event.stopPropagation(); 
+      hx-on:click="event.stopPropagation();
         this.querySelector('.navbar-dropdown').classList.toggle('is-active');
         document.querySelectorAll('.navbar-dropdown').forEach(d => {
           if (d !== this.querySelector('.navbar-dropdown')) d.classList.remove('is-active');
@@ -108,16 +108,16 @@
 
     <div class="modal" id="infoModal">
       <div class="modal-background" hx-on:click="this.closest('.modal').classList.remove('is-active')"></div>
-      
+
       <div class="modal-content box back-2">
         {% include 'base/info.htm' %}
-        <button class="button is-light" 
+        <button class="button is-light"
             hx-on:click="this.closest('.modal').classList.remove('is-active')">
           {{ _menu.close }}
         </button>
       </div>
-      
-      <button class="modal-close is-large" 
+
+      <button class="modal-close is-large"
         aria-label="close"
         hx-on:click="this.closest('.modal').classList.remove('is-active')"></button>
     </div>

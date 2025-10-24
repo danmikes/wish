@@ -17,14 +17,14 @@ app = create_app()
 with app.app_context():
   # db.drop_all()
   db.create_all()
-  
+
   user = User(username='<username>', password='<password>')
   wish = Wish(owner=<username>, description='<wish>')
-  
+
   db.session.add_all([user, wish])
   db.session.commit()
   print(f"✅ Database initialised")
 
   user_count = User.query.count()
-  wish_count = Wish.query.count() 
+  wish_count = Wish.query.count()
   print(f"📊 Created {user_count} user and {wish_count} wish")
