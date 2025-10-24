@@ -1,9 +1,10 @@
+app/upload/
+instance/
 __pycache__/
+.pytest_cache/
 .venv/
 .vscode/
 .webassets-cache/
-app/upload/
-instance/
-script/db_fill.py
-*.DS_Store
+.DS_Store
 *.log
+script/db_fill.py
