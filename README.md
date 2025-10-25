@@ -9,7 +9,7 @@
 - `wsgi.py -> pythonanywhere`
 
 ## Develop
-- `flask run --debug`
+- `flask run`
 - [view](http://localhost:5000)
 
 ## Deploy
