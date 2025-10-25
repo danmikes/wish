@@ -3,7 +3,7 @@
 - Flask Python Jinja Bulma
 
 ## Code
-- [github](https://github.com/danmikes)
+- [github](https://github.com/danmikes/wish)
 
 ## Copy
 - `wsgi.py -> pythonanywhere`
