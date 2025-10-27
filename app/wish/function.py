@@ -69,6 +69,10 @@ def fill_wish(form, wish=None):
   return wish
 
 def save_wish(wish=None):
+  if wish is None:
+    flash('No wish', 'warning')
+    return False
+
   try:
     if wish.id is None:
       db.session.add(wish)

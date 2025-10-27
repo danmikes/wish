@@ -6,6 +6,7 @@ __pycache__/
 # develop
 .vscode/
 .flaskenv
+.env
 *.log
 .webassets-cache/
 

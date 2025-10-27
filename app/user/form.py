@@ -5,7 +5,7 @@ from ..util.field_length import FieldLength, length_max
 
 common_validators = [
   DataRequired(),
-  Length(min=FieldLength.MINI.value, max=FieldLength.SMALL.value, message=length_max(FieldLength.SMALL.value))
+  Length(min=FieldLength.MINI.value, max=FieldLength.SMALL.value, message=length_max(FieldLength.SMALL))
 ]
 
 class LoginForm(FlaskForm):

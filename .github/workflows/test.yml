@@ -1,0 +1,10 @@
+
+name: Test SSH Connection
+on: workflow_dispatch
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test SSH
+        run: |
+          timeout 30s ssh -o ConnectTimeout=10 -v ${{ secrets.PYTHONANYWHERE_USERNAME }}@{{ secrets.PYTHONANYWHERE_HOST  }} "echo 'SSH works!'"

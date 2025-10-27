@@ -33,24 +33,3 @@ def toggle_lang(lang):
 @base.route('/health')
 def health():
   return {'status': 'healthy'}, 200
-
-@base.route('/update')
-def update():
-  auth_header = request.headers.get('Authorization')
-  if not auth_header or not auth_header.startswith('Bearer '):
-    return 'Missing or invalid Authorization header', 401
-
-  token = auth_header.replace('Bearer ', '')
-  token_expect = os.environ.get('DEPLOY_TOKEN')
-  if token != token_expect:
-    return 'Invalid token', 401
-
-  work_dir = os.environ.get('WORK_DIR')
-  repo = Repo(work_dir)
-  origin = repo.remotes.origin
-  origin.fetch()
-  repo.git.reset('--hard', 'origin/main')
-
-  wsgi_path = os.environ.get('WSGI_PATH')
-  os.system(f'touch {wsgi_path}')
-  return 'Updated successfully', 200

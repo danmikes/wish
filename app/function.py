@@ -1,7 +1,8 @@
 import json
 import os
 from flask import current_app, redirect, url_for
-from flask_assets import Environment, Bundle
+from flask_assets import Environment
+from webassets.bundle import Bundle
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
@@ -15,7 +16,7 @@ os.makedirs(os.path.dirname(db_path), exist_ok=True)
 csrf = CSRFProtect()
 db = SQLAlchemy()
 login_manager = LoginManager()
-login_manager.login_view = 'user.user_login'
+login_manager.login_view = 'user.user_login' # type: ignore
 
 def config_app(app):
   app.config.update({

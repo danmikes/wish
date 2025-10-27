@@ -10,7 +10,7 @@ class WishForm(FlaskForm):
   id = HiddenField('ID')
   description = TextAreaField('Description', validators=[
     DataRequired(),
-    Length(max=FieldLength.MEDIUM.value, message=length_max(FieldLength.MEDIUM.value))])
+    Length(max=FieldLength.MEDIUM.value, message=length_max(FieldLength.MEDIUM))])
   url = StringField('Link', validators=[
     Optional(),
     URL(message="Enter valid URL")])
