@@ -8,6 +8,9 @@
 ## Copy
 - `wsgi.py -> pythonanywhere`
 
+## Install
+- `source venv.sh`
+
 ## Develop
 - `flask run`
 - [view](http://localhost:5000)
