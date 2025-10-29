@@ -32,33 +32,6 @@ def user_logout():
   flash('You logged-out', 'info')
   return redirect(url_for('user.user_login'))
 
-@user.route('/register', methods=['GET', 'POST'])
-def user_register():
-
-  form = RegistrationForm()
-  result = handle_register(form)
-  if result:
-    return result
-  return render_template('register.htm', form=form, page='register')
-
-@user.route('/remove/<int:user_id>', methods=['GET', 'DELETE'])
-@login_required
-def user_remove(user_id):
-  user = User.query.get_or_404(user_id)
-  log.debug(f'user_id : {user.id}')
-  log.debug(f'user_name : {user.username}')
-
-  if user is None:
-    flash('User none', 'warning')
-    return redirect(url_for('user.users'))
-
-  try:
-    handle_remove(user)
-    flash('User removed', 'success')
-  except Exception as e:
-    flash('User not removed', 'error')
-  return redirect(url_for('user.users'))
-
 @user.route('/all/json', methods=['GET'])
 @login_required
 def users_json():

@@ -10,29 +10,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-
-    - name: Deploy via SSH
-      uses: appleboy/ssh-action@v0.1.10
+    - name: Trigger deployment webhook
+      uses: fjogeleit/http-request-action@v1
       with:
-        host: ${{ secrets.PYTHONANYWHERE_HOST }}
-        username: ${{ secrets.PYTHONANYWHERE_USERNAME }}
-        key: ${{ secrets.PYTHONANYWHERE_SSH_KEY }}
-        script: |
-          set -e  # Exit on error
-          cd /home/${{ secrets.PYTHONANYWHERE_USERNAME }}/wish/
-
-          echo "🔄 Pulling latest code ..."
-          git fetch origin
-          git reset --hard origin/main
-
-          echo "🐍 Activating virtual environment..."
-          source /home/${{ secrets.PYTHONANYWHERE_USERNAME }}/.virtualenvs/wish-venv/bin/activate
-
-          echo "📦 Installing dependencies ..."
-          pip install --user -r requirements.txt  #
-
-          echo "🚀 Reloading web application ..."
-          touch /var/www/${{ secrets.PYTHONANYWHERE_USERNAME }}_eu_pythonanywhere_com_wsgi.py
-
-          echo "✅ Deployment completed!"
+        url: ${{ secrets.DEPLOY_URL }}
+        method: 'GET'
+        customHeaders: |
+          {
+            "Authorization": "Bearer ${{ secrets.DEPLOY_TOKEN }}"
+          }

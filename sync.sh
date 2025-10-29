@@ -6,17 +6,17 @@ REMOTE_DIR="~/wish/"
 WSGI_FILE="/var/www/dmikes_eu_pythonanywhere_com_wsgi.py"
 
 exclude_patterns=(
-    '__pycache__'
-    '.git'
-    '*.pyc'
-    '.env'
-    'venv/'
-    '.vscode'
-    '*.log'
     'instance/'
-    '*.sqlite3'
-    'node_modules'
+    'node_modules/'
     '.DS_Store'
+    '.venv/'
+    '.vscode/'
+    '__pycache__'
+    # '.env'
+    '.git'
+    '*.log'
+    '*.pyc'
+    '*.sqlite3'
     '*.tmp'
 )
 

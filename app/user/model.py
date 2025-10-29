@@ -2,6 +2,7 @@ from datetime import datetime
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from .. import db
+from app.wish.model import Wish
 
 class User(UserMixin, db.Model):
   __tablename__ = 'user'
@@ -11,8 +12,8 @@ class User(UserMixin, db.Model):
   password_hash = db.Column(db.String(128), nullable=False)
   timestamp = db.Column(db.DateTime, default=datetime.utcnow)
 
-  wishes = db.relationship('Wish', back_populates='owner', cascade="all, delete-orphan", foreign_keys='Wish.owner_id', lazy="dynamic")
-  wishes_bought = db.relationship('Wish', back_populates='buyer', foreign_keys='wish.buyer_id', lazy="dynamic")
+  wishes = db.relationship('Wish', back_populates='owner', cascade="all, delete-orphan", foreign_keys=lambda: [Wish.owner_id])
+  wishes_bought = db.relationship('Wish', back_populates='buyer', foreign_keys=lambda: [Wish.buyer_id])
 
   def __init__(self, username, password):
     self.username = username
@@ -30,6 +31,7 @@ class User(UserMixin, db.Model):
   def to_dict(self):
     return {
       'username': self.username,
-      'wishes': [wish.description for wish in self.wishes], # type:ignore
-      'wishes_bought': [wish.description for wish in self.wishes_bought.all()], # type: ignore
+      'wishes': [wish.description for wish in self.wishes.all()],
+      'wishes_bought': [wish.description for wish in self.wishes_bought.all()],
     }
+

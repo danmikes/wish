@@ -1,5 +1,4 @@
 from flask_login import current_user
-from sqlalchemy import event
 from urllib.parse import urlparse
 from .. import db
 
@@ -12,11 +11,11 @@ class Wish(db.Model):
   url = db.Column(db.String(255))
   image = db.Column(db.String(255))
 
-  owner_id = db.Column(db.Integer, db.ForeignKey('user.id'), index=True, nullable=False)
-  owner = db.relationship('User', back_populates='wishes', foreign_keys=[owner_id], lazy="dynamic")
+  owner_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), index=True)
+  owner = db.relationship('User', back_populates='wishes', foreign_keys=lambda: [Wish.owner_id])
 
-  buyer_id = db.Column(db.Integer, db.ForeignKey('user.id'), index=True)
-  buyer = db.relationship('User', back_populates='wishes_bought', foreign_keys=[buyer_id], lazy="dynamic")
+  buyer_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='SET NULL'), index=True)
+  buyer = db.relationship('User', back_populates='wishes_bought', foreign_keys=lambda: [Wish.buyer_id])
 
   def __init__(self, description, url=None, image=None, owner=None):
     self.description = description

@@ -5,8 +5,9 @@
 ## Code
 - [github](https://github.com/danmikes/wish)
 
-## Copy
+## Sync
 - `wsgi.py -> pythonanywhere`
+- `source sync.sh`
 
 ## Install
 - `source venv.sh`
@@ -19,3 +20,8 @@
 - `git push`
 - [health](https://dmikes.eu.pythonanywhere.com/health)
 - [view](https://dmikes.eu.pythonanywhere.com)
+
+## Admin
+- [admin](http://dmikes.eu.pythonanywhere.com/admin)
+- [user](http://dmikes.eu.pythonanywhere.com/admin/user)
+- [wish](http://dmikes.eu.pythonanywhere.com/admin/wish)

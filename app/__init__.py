@@ -1,5 +1,6 @@
 from flask import Flask, current_app, g, session
 from .function import (
+  build_admin,
   build_assets,
   config_app,
   initialise_extensions,
@@ -21,14 +22,11 @@ def create_app():
   def inject_content():
     return dict(content=g.content)
 
-  @app.context_processor
-  def inject_admin_username():
-    return dict(ADMIN_USERNAME=current_app.config['ADMIN_USERNAME'])
-
   config_app(app)
   initialise_extensions(app)
   initialise_database(app)
   register_blueprints(app)
+  build_admin(app, db)
   build_assets(app)
 
   return app

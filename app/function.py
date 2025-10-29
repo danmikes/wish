@@ -20,7 +20,7 @@ login_manager.login_view = 'user.user_login' # type: ignore
 
 def config_app(app):
   app.config.update({
-    'ADMIN_USERNAME': 'daniel',
+    'ADMIN_ID': 1,
     'ALLOWED_EXTENSIONS': AllowedExtension.as_set(),
     'SECRET_KEY': os.environ.get('SECRET_KEY', 'dev-fallback-key'),
     'SESSION_COOKIE_HTTPONLY': True,
@@ -55,6 +55,10 @@ def build_assets(app):
                 depends='*.scss')
   assets.register("asset_css", scss)
   scss.build()
+
+def build_admin(app, db):
+  from .admin import init_admin
+  init_admin(app, db)
 
 def load_content(lang):
   file_path = os.path.join(current_app.root_path, 'content', f'{lang}.json')

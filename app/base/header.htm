@@ -87,21 +87,15 @@
         <a class="navbar-item" hx-on:click="document.getElementById('infoModal').classList.add('is-active')">
           <span class="emoji">🤔</span>
         </a>
-        {% if current_user.is_authenticated and current_user.username == ADMIN_USERNAME and page != 'register' %}
-          {% if page == 'view' %}
-            <a class="navbar-item" href="{{ url_for('wish.wishes') }}">
-              <span class="emoji">🏠</span>
-            </a>
-          {% else %}
-            <a class="navbar-item" href="{{ url_for('user.users') }}">
-              <span class="emoji">👤</span>
-            </a>
-          {% endif %}
-        {% endif %}
         {% if current_user.is_authenticated %}
           <a class="navbar-item" href="{{ url_for('user.user_logout') }}">
             <span class="emoji">❌</span>
           </a>
+          {% if current_user.id == ADMIN_ID %}
+            <a class="navbar-item" href="{{ url_for('admin.index') }}">
+              <span class="emoji">⚙️</span>
+            </a>
+          {% endif %}
         {% endif %}
       </div>
     </div>
