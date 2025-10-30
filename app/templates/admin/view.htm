@@ -1,9 +1,0 @@
-{% extends 'admin/master.html' %}
-
-{% block body %}
-  <h1>Wish List Admin Panel</h1>
-  <ul>
-    <li><a href="{{ url_for('admin_users.index_view') }}">Manage Users</a></li>
-    <li><a href="{{ url_for('admin_wishes.index_view') }}">Manage Wishes</a></li>
-  </ul>
-{% endblock %}

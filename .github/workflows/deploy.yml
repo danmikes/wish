@@ -17,5 +17,5 @@ jobs:
         method: 'GET'
         customHeaders: |
           {
-            "Authorization": "Bearer ${{ secrets.DEPLOY_TOKEN }}"
+            "Authorisation": "Bearer ${{ secrets.DEPLOY_TOKEN }}"
           }

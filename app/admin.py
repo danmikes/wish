@@ -16,7 +16,7 @@ class SecureModelView(ModelView):
 class UserAdminView(SecureModelView):
   column_list = ['id', 'username']
 
-  def _has_wishes_formatter(self, context, model, name):
+  def _is_owner_formatter(self, context, model, name):
     from app.wish.model import Wish
     wish_count = Wish.query.filter_by(owner_id=model.id).count()
     return f'Yes ({wish_count})' if wish_count > 0 else 'No'
@@ -27,11 +27,11 @@ class UserAdminView(SecureModelView):
     return f'Yes ({buyer_count})' if buyer_count > 0 else 'No'
 
   column_formatters = {
-    'has_wishes': _has_wishes_formatter,
+    'is_owner': _is_owner_formatter,
     'is_buyer': _is_buyer_formatter,
   }
 
-  column_list = ['id', 'username', 'has_wishes', 'is_buyer']
+  column_list = ['id', 'username', 'is_owner', 'is_buyer']
 
   # form_columns = ['id', 'username', 'password', 'current_password']
   form_excluded_columns = ['password_hash', 'timestamp']

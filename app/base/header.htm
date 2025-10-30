@@ -91,7 +91,7 @@
           <a class="navbar-item" href="{{ url_for('user.user_logout') }}">
             <span class="emoji">❌</span>
           </a>
-          {% if current_user.id == ADMIN_ID %}
+          {% if current_user.id == config.ADMIN_ID %}
             <a class="navbar-item" href="{{ url_for('admin.index') }}">
               <span class="emoji">⚙️</span>
             </a>
