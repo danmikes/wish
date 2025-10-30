@@ -66,6 +66,12 @@ class WishAdminView(SecureModelView):
     if is_created and current_user.id != 1:
       model.owner_id = current_user.id # type: ignore
 
+  def delete_model(self, model):
+    if model.image:
+      from app.util.function import delete_image
+      delete_image(model.image)
+    return super().delete_model(model)
+
 def init_admin(app, db_param):
   from app.user.model import User
   from app.wish.model import Wish
