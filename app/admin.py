@@ -1,10 +1,25 @@
-from flask_admin import Admin, AdminIndexView
+from flask_admin import Admin, AdminIndexView, expose
 from flask_admin.contrib.sqla import ModelView
 from flask_login import current_user
 from flask import current_app, redirect, request, url_for
 from wtforms import PasswordField, StringField
 
-admin = Admin(name='Wish List Admin', url='/admin')
+class CustomAdminView(AdminIndexView):
+  @expose('/')
+  def index(self):
+    return self.render('admin/index.html')
+
+  def is_accessible(self):
+    return current_user.is_authenticated and current_user.id == current_app.config['ADMIN_ID']
+
+  def inaccessible_callback(self, name, **kwargs):
+    return redirect(url_for('user.login', next=request.url))
+
+admin = Admin(
+    name='Home',
+    url='/admin',
+    index_view=CustomAdminView(name='Home', url='/admin', endpoint='admin')
+)
 
 class SecureModelView(ModelView):
   def is_accessible(self):
@@ -80,5 +95,36 @@ def init_admin(app, db_param):
   db = db_param
 
   admin.init_app(app)
+
+  @app.after_request
+  def inject_admin_redirect(response):
+    if (request.path.startswith('/admin') and
+      response.content_type == 'text/html; charset=utf-8'):
+
+      css_code = """
+      <style>
+      /* Hide the admin Home nav item immediately */
+      .navbar-nav a[href="/admin/"] {
+          display: none !important;
+      }
+      </style>
+      """
+
+      js_code = """
+      <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          var brand = document.querySelector('.navbar-brand');
+          if (brand && brand.href.endsWith('/admin')) {
+              brand.href = '/';
+          }
+      });
+      </script>
+      """
+
+      if response.data:
+        response.data = response.data.replace(b'</head>', css_code.encode() + b'</head>')
+        response.data = response.data.replace(b'</body>', js_code.encode() + b'</body>')
+    return response
+
   admin.add_view(UserAdminView(User, db.session, endpoint='users'))
   admin.add_view(WishAdminView(Wish, db.session, endpoint='wishes'))

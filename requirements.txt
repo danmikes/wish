@@ -1,4 +1,4 @@
-# Python 3.10 | PyAny
+# Python 3.11 | PyAny
 flask
 flask-admin
 flask-assets
