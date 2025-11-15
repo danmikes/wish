@@ -1,4 +1,4 @@
-# Flask-App
+# Wish-App
 - Family wishes
 - Flask Python Jinja Bulma
 
