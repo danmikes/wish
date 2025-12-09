@@ -14,5 +14,6 @@ gitpython
 email_validator
 dnspython
 sqlalchemy
+tldextract
 werkzeug
 wtforms
