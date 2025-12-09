@@ -1,3 +1,4 @@
+import tldextract
 from flask_login import current_user
 from urllib.parse import urlparse, urlunparse
 from .. import db
@@ -35,10 +36,8 @@ class Wish(db.Model):
   @property
   def domain(self):
     if self.url:
-      hostname = urlparse(self.url).hostname
-      if hostname:
-        hostname = hostname.replace('www.', '')
-        return hostname.rsplit('.', 1)[0] if '.' in hostname else hostname
+      extracted = tldextract.extract(self.url)
+      return extracted.domain.lower()
     return None
 
   @staticmethod

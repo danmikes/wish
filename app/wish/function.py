@@ -39,8 +39,15 @@ def save_file(file):
 
   try:
     with Image.open(file) as image:
+      if image.mode in ('RGBA', 'LA', 'P'):
+        background = Image.new('RGB', image.size, (255,255,255))
+        if image.mode == 'P':
+          image = image.convert('RGBA')
+          background.paste(image, mask=image.split()[-1] if image.mode == 'RGBA' else None)
+          image = background
+
       image_resized = resize_image(image)
-      image_resized.save(file_path, dpi=(72, 72), quality=85)
+      image_resized.save(file_path, dpi=(72, 72), quality=85, optimize=True)
       return file_name
   except Exception as e:
     flash(f'Error saving file: {e}', 'warning')
@@ -131,7 +138,7 @@ def process_wish(form, wish=None):
           wish = fill_wish(form, wish)
 
         if saved_image:
-          wish.image = new_image
+          wish.image = saved_image
 
         if wish.id is None:
           db.session.add(wish)
