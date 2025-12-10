@@ -2,6 +2,7 @@ from flask_admin import Admin, AdminIndexView, expose
 from flask_admin.contrib.sqla import ModelView
 from flask_login import current_user
 from flask import current_app, redirect, request, url_for
+from markupsafe import Markup
 from wtforms import PasswordField, StringField
 
 class CustomAdminView(AdminIndexView):
@@ -48,6 +49,10 @@ class UserAdminView(SecureModelView):
 
   column_list = ['id', 'username', 'is_owner', 'is_buyer']
 
+  column_searchable_list = ['username']
+  column_filters = ['username']
+  column_default_sort = ('id')
+
   # form_columns = ['id', 'username', 'password', 'current_password']
   form_excluded_columns = ['password_hash', 'timestamp']
 
@@ -67,6 +72,42 @@ class UserAdminView(SecureModelView):
       model.set_password(form.password.data) # type: ignore
 
 class WishAdminView(SecureModelView):
+  column_list = ['id', 'description', 'domain', 'owner.username', 'buyer.username', 'image_preview']
+  column_labels = {
+    'owner.username': 'Owner',
+    'buyer.username': 'Buyer',
+    'image_preview': 'Image'
+  }
+
+  column_searchable_list = ['description', 'url']
+  column_filters = ['owner.username', 'buyer.username']
+  column_default_sort = ('id')
+
+  def image_preview_formatter(self, context, model, name):
+    if model.image:
+      try:
+        image_url = url_for('util.upload_file', filename=model.image)
+      except:
+        image_url = f'/util/file/{model.image}'
+
+      html = f'<img src="{image_url}" width="50" height="50" style="object-fit: cover; border-radius: 4px;">'
+      return Markup(html)
+    return "-"
+
+  def domain_formatter(self, context, model, name):
+    if hasattr(model, 'domain') and model.domain:
+      return model.domain
+    if model.url:
+      from tldextract import extract
+      extracted = extract(model.url)
+      return f"{extracted.domain}.{extracted.suffix}"
+    return "-"
+
+  column_formatters = {
+    'image_preview': image_preview_formatter,
+    'domain': domain_formatter,
+  }
+
   def get_query(self):
     if current_user.id != 1:
       return self.session.query(self.model).filter(self.model.owner_id == current_user.id)
