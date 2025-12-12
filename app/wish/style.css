@@ -119,11 +119,17 @@
 
 .card-content {
   padding: 2px;
+  justify-content: space-around;
 }
 
 .card-content a {
   color: var(--magenta) !important;
-  margin-bottom: auto;
+}
+
+.card-content .price {
+  margin: 0;
+  font-weight: bold;
+  color: green;
 }
 
 .card-image {

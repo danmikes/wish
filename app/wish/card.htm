@@ -7,7 +7,11 @@
 
   <div class="card-content">
     {% if prop.url and prop.domain %}
-      <a href="{{ prop.url }}" target="_blank">{{ prop.domain }}</a>
+    <a href="{{ prop.url }}" target="_blank">{{ prop.domain }}</a>
+    {% endif %}
+
+    {% if prop.price %}
+      <p class="price">€{{ "%.2f"|format(prop.price)}}</p>
     {% endif %}
   </div>
 
