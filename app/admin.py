@@ -72,7 +72,7 @@ class UserAdminView(SecureModelView):
       model.set_password(form.password.data) # type: ignore
 
 class WishAdminView(SecureModelView):
-  column_list = ['id', 'description', 'domain', 'owner.username', 'buyer.username', 'image_preview']
+  column_list = ['id', 'description', 'domain', 'price', 'owner.username', 'buyer.username', 'image_preview']
   column_labels = {
     'owner.username': 'Owner',
     'buyer.username': 'Buyer',

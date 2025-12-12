@@ -1,3 +1,4 @@
+from sqlalchemy import Numeric
 import tldextract
 from flask_login import current_user
 from urllib.parse import urlparse, urlunparse
@@ -10,6 +11,7 @@ class Wish(db.Model):
 
   description = db.Column(db.String(255), nullable=False)
   url = db.Column(db.String(255))
+  price = db.Column(Numeric(10, 2), nullable=True)
   image = db.Column(db.String(255))
 
   owner_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), index=True)
@@ -18,9 +20,10 @@ class Wish(db.Model):
   buyer_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='SET NULL'), index=True)
   buyer = db.relationship('User', back_populates='wishes_bought', foreign_keys=lambda: [Wish.buyer_id])
 
-  def __init__(self, description, url=None, image=None, owner=None):
+  def __init__(self, description, url=None, price=None, image=None, owner=None):
     self.description = description
     self.url = self.clean_url(url) if url else None
+    self.price = price
     self.image = image
     if owner is not None:
       self.owner = owner
@@ -52,6 +55,7 @@ class Wish(db.Model):
     return {
       'description': self.description,
       'url': self.url,
+      'price': self.price,
       'domain': self.domain,
       'image': self.image,
       'buyer': self.buyer.username if self.buyer else None,

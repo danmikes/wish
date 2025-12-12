@@ -26,10 +26,19 @@
           </div>
         </div>
 
-        <div class="field">
-          <label class="label">{{ _wish.link }}</label>
-          <div class="control">
-            {{ form.url(class="input", id="url-input") }}
+        <div>
+          <div class="field">
+            <label class="label">{{ _wish.link }}</label>
+            <div class="control">
+              {{ form.url(class="input", id="url-input") }}
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">{{ _wish.price }}</label>
+            <div class="control">
+              {{ form.price(class="input", id="price-input", type="number", step="0.01", min="0")}}
+            </div>
           </div>
         </div>
 
@@ -71,6 +80,7 @@
       </div>
 
       <div class="card-content">
+        <p id="price-preview">{{ form.price }}
         <a id="url-preview" href="{{ form.url.data }}" target="_blank">{{ form.url.data }}</a>
       </div>
 

@@ -4,6 +4,7 @@ from flask import current_app, redirect, url_for
 from flask_assets import Environment
 from webassets.bundle import Bundle
 from flask_login import LoginManager
+from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
 from .util.logger import log
@@ -16,6 +17,7 @@ os.makedirs(os.path.dirname(db_path), exist_ok=True)
 csrf = CSRFProtect()
 db = SQLAlchemy()
 login_manager = LoginManager()
+migrate = Migrate()
 login_manager.login_view = 'user.user_login' # type: ignore
 
 def config_app(app):
@@ -37,10 +39,14 @@ def initialise_extensions(app):
   csrf.init_app(app)
   db.init_app(app)
   login_manager.init_app(app)
+  migrate.init_app(app, db)
 
 def initialise_database(app):
   with app.app_context():
-    db.create_all()
+    from sqlalchemy import inspect
+    inspector = inspect(db.engine)
+    if not inspector.get_table_names():
+      db.create_all()
 
 def register_blueprints(app):
   from .blueprint import register_route

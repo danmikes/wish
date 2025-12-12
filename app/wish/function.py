@@ -66,12 +66,19 @@ def delete_file(file_name):
   return file_name
 
 def fill_wish(form, wish=None):
-  wish = wish or Wish(owner=current_user, description='', url=None, image=None)
+  wish = wish or Wish(
+    owner=current_user,
+    description='',
+    url=None,
+    price=None,
+    image=None
+  )
   wish.description = form.description.data
   wish.url = Wish.clean_url(form.url.data) if form.url.data else None
+  wish.price = form.price.data
 
-  if form.image.data:
-    wish.image = form.image.data
+  # if form.image.data:
+  #   wish.image = form.image.data
 
   return wish
 
