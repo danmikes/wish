@@ -12,6 +12,9 @@
 ## Install
 - `source venv.sh`
 
+## Database
+- `flask db upgrade`
+
 ## Develop
 - `flask run`
 - [view](http://localhost:5000)
