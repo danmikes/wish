@@ -10,7 +10,7 @@
 - `source sync.sh`
 
 ## Install
-- `source venv.sh`
+- `penv`
 
 ## Database
 - `flask db upgrade`
