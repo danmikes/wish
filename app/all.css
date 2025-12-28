@@ -131,22 +131,23 @@ body {
   font-weight: 600; }
 
 @media screen and (min-width: 769px) {
-  .navbar-item.has-dropdown:hover .navbar-dropdown {
-    display: block !important;
-    opacity: 1 !important;
-    visibility: visible !important; }
   .navbar-dropdown {
     display: none;
     opacity: 0;
-    visibility: hidden;
-    z-index: 20; } }
+    visibility: hidden; }
+  .navbar-item.has-dropdown:hover .navbar-dropdown {
+    display: block;
+    opacity: 1;
+    visibility: visible; } }
 
 @media screen and (max-width: 768px) {
   .navbar-dropdown {
     display: none;
     width: 100%; }
   .navbar-dropdown.is-active {
-    display: block; } }
+    display: block; }
+  .header-container {
+    justify-content: space-between; } }
 
 .navbar-link,
 .navbar-item,
