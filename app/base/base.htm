@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -19,7 +19,7 @@
   {% block css %}{% endblock %}
 </head>
 <body
-  theme="{{ session.get('theme', 'color') }}"
+  theme="{{ session.get('theme', 'dark') }}"
   font="{{ session.get('font', 'medium') }}"
   id="body">
   <div class="page-container">

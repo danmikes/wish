@@ -1,13 +1,13 @@
 @mixin theme-color {
-  --back-1: #F0F4F8;
-  --back-2: #D9E2EC;
-  --back-3: #FEFCBF;
-  --bord-1: #9FB3C8;
-  --bord-2: #48BB78;
-  --bord-3: #4299E1;
-  --text-1: #2D3748;
-  --text-2: #4A5568;
-  --text-3: #718096;
+  --back-1: var(--paleblue);
+  --back-2: var(--lightblue);
+  --back-3: var(--paleyellow);
+  --bord-1: var(--steelblue);
+  --bord-2: var(--emerald);
+  --bord-3: var(--azure);
+  --text-1: var(--charcoal);
+  --text-2: var(--slate);
+  --text-3: var(--greyblue);
 }
 
 @mixin theme-dark {
@@ -40,6 +40,17 @@
   --grey: #999;
   --lightgrey: #d8d8d8;
   --white: #e8e8e8;
+
+  --paleblue: #F0F4F8;
+  --lightblue: #D9E2EC;
+  --paleyellow: #FEFCBF;
+  --steelblue: #9FB3C8;
+  --emerald: #48BB78;
+  --azure: #4299E1;
+  --charcoal: #2D3748;
+  --slate: #4A5568;
+  --greyblue: #718096;
+
   --blue: lightblue;
   --brown: #db8;
   --green: lightgreen;
@@ -48,20 +59,8 @@
   --cyan: cyan;
   --magenta: magenta;
   --yellow: yellow;
-  color-scheme: light dark;
-  @include theme-color;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    @include theme-dark;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    @include theme-light;
-  }
+  color-scheme: dark light;
+  @include theme-dark;
 }
 
 [theme="color"] {
