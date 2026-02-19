@@ -1,4 +1,4 @@
-name: Deploy to PythonAnywhere
+name: Reload on PythonAnywhere
 
 on:
   push:
@@ -10,9 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Trigger deploy webhook
+    - name: Trigger reload webhook
       uses: fjogeleit/http-request-action@v1
       with:
-        url: ${{ secrets.DEPLOY_URL }}
+        url: ${{ secrets.RELOAD_URL }}
         method: 'GET'
         customHeaders: '{"Authorisation": "Bearer ${{ secrets.DEPLOY_TOKEN }}"}'
