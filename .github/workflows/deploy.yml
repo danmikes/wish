@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Trigger deployment webhook
+    - name: Trigger deploy webhook
       uses: fjogeleit/http-request-action@v1
       with:
         url: ${{ secrets.DEPLOY_URL }}

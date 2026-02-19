@@ -53,4 +53,19 @@ def update():
 
   wsgi_path = os.environ.get('WSGI_PATH')
   os.system(f'touch {wsgi_path}')
-  return 'Updated successfully', 200
+  return 'App updated', 200
+
+@base.route('/reload', methods=['GET'])
+def reload():
+  auth_header = request.headers.get('Authorisation')
+  if not auth_header or not auth_header.startswith('Bearer '):
+    return 'Missing or invalid Authorisation header', 401
+
+  token = auth_header.replace('Bearer ', '')
+  token_expect = os.environ.get('DEPLOY_TOKEN')
+  if token != token_expect:
+    return 'Invalid token', 401
+
+  wsgi_path = os.environ.get('WSGI_PATH')
+  os.system(f'touch {wsgi_path}')
+  return 'App reloaded', 200
