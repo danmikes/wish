@@ -11,8 +11,7 @@ jobs:
 
     steps:
     - name: Trigger deploy webhook
-      uses: fjogeleit/http-request-action@v1
-      with:
-        url: ${{ secrets.DEPLOY_URL }}
-        method: 'GET'
-        customHeaders: '{"Authorisation": "Bearer ${{ secrets.DEPLOY_TOKEN }}"}'
+      run: |
+        curl -X GET \
+        -H "Authorisation: Bearer ${{ secrets.DEPLOY_TOKEN }}" \
+        "${{ secrets.DEPLOY_URL }}"

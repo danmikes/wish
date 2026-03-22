@@ -1,8 +1,8 @@
 name: Reload on PythonAnywhere
 
 on:
-  push:
-    branches: [ main ]
+  schedule:
+    - cron: '0 0 1 * *'
   workflow_dispatch:
 
 jobs:
@@ -11,8 +11,7 @@ jobs:
 
     steps:
     - name: Trigger reload webhook
-      uses: fjogeleit/http-request-action@v1
-      with:
-        url: ${{ secrets.RELOAD_URL }}
-        method: 'GET'
-        customHeaders: '{"Authorisation": "Bearer ${{ secrets.DEPLOY_TOKEN }}"}'
+      run: |
+        curl -X GET \
+          -H "Authorisation: Bearer ${{ secrets.DEPLOY_TOKEN }}" \
+          "${{ secrets.RELOAD_URL }}"
