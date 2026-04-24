@@ -1,4 +1,4 @@
-name: Deploy to PythonAnywhere
+name: Update PythonAnywhere
 
 on:
   push:
@@ -6,12 +6,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
+  update:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Trigger deploy webhook
+    - name: Trigger update webhook
       run: |
         curl -X GET \
-        -H "Authorisation: Bearer ${{ secrets.DEPLOY_TOKEN }}" \
+        -H "Authorisation: Bearer ${{ secrets.ACCESS_TOKEN }}" \
         "${{ secrets.DEPLOY_URL }}"
