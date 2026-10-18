@@ -1,0 +1,77 @@
+{% set _theme=content.theme %}
+{% set _font=content.font %}
+{% set _lang=content.lang %}
+{% set _menu=content.menu %}
+{% set _wish=content.wish %}
+
+<div class="container">
+  <div class="card">
+    <h2 class="topic">🎨 {{ _theme.theme }}</h2>
+    <ul>
+      <li><span class="emoji small">🌈</span> <span>{{ _theme.color }}</span></li>
+      <li><span class="emoji medium">⚫</span> <span>{{ _theme.dark }}</span></li>
+      <li><span class="emoji small">⚪</span> <span>{{ _theme.light }}</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2 class="topic">A {{ _font.font }}</h2>
+    <ul>
+      <li><span class="large">A</span> <span>{{ _font.large }}</span></li>
+      <li><span class="medium">A</span> <span>{{ _font.medium }}</span></li>
+      <li><span class="small">A</span> <span>{{ _font.small }}</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2 class="topic">🌐 Language</h2>
+    <ul>
+      <li><span class="emoji">🇬🇧 {{ _lang.english }}</span></li>
+      <li><span class="emoji">🇨🇿 {{ _lang.czech }}</span></li>
+      <li><span class="emoji">🇳🇱 {{ _lang.dutch }}</span></li>
+      <li><span class="emoji">🇷🇺 {{ _lang.russian }}</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2 class="topic">☰ {{ _menu.menu }}</h2>
+    <ul>
+      <li><span class="emoji">🤔</span></li>
+      <li><span class="emoji">❌</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2 class="topic"><span class="btn green">{{ _wish.new }}</span>{{ _wish.wish }}</h2>
+    <ul>
+      <li><span class="btn back-2">{{ _wish.prtscr }}</span></li>
+      <li><span class="btn blue">{{ _wish.add }}</span><span class="btn red">{{ _wish.remove }}</span><span>{{ _wish.image }}</span></li>
+      <li><span class="btn green">{{ _wish.save }}</span><span class="btn brown">{{ _wish.cancel }}</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2 class="topic"><span class="btn blue">{{ _wish.edit }}</span>{{ _wish.wish }}</h2>
+    <ul>
+      <li><span class="btn green">{{ _wish.save }}</span><span class="btn brown">{{ _wish.cancel }}</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2 class="topic"><span class="btn red">{{ _wish.delete }}</span>{{ _wish.wish }}</h2>
+  </div>
+
+  <div class="card">
+    <h2 class="topic"><span class="btn green">{{ _wish.buy }}</span> {{ _wish.wish }}</h2>
+    <ul>
+      <li><span class="btn brown">{{ _wish.cancel }}</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2 class="topic">{{ _menu.exit }}</h2>
+    <ul>
+      <li><span class="btn back-2">{{ _menu.close }}</span><span class="btn back-2">{{ _menu.esc }}</span><span class="btn back-2 small">✗</span></li>
+    </ul>
+  </div>
+</div>

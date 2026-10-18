@@ -1,0 +1,48 @@
+[font="large"] {
+  --h1: 2rem;
+  --h2: 1.75rem;
+  --p: 1.5rem;
+  --a: 1.5rem;
+  --span: 1.5rem;
+  --huge: 3.5rem;
+  --large: 1.6rem;
+  --medium: 1.5rem;
+  --small: 1.4rem;
+  --size: 400px;
+}
+
+[font="medium"] {
+  --h1: 1.5rem;
+  --h2: 1.25rem;
+  --p: 1rem;
+  --a: 1rem;
+  --span: 1rem;
+  --huge: 3rem;
+  --large: 1.1rem;
+  --medium: 1rem;
+  --small: .9rem;
+  --size: 300px;
+}
+
+[font="small"] {
+  --h1: 1.25rem;
+  --h2: 1rem;
+  --p: .75rem;
+  --a: .75rem;
+  --span: .75rem;
+  --huge: 2.5rem;
+  --large: .85rem;
+  --medium: .75rem;
+  --small: .65rem;
+  --size: 250px;
+}
+
+h1 { font-size: var(--h1); }
+h2 { font-size: var(--h2); }
+p { font-size: var(--p); }
+a { font-size: var(--a); }
+span { font-size: var(--span); }
+
+.large { font-size: var(--large); }
+.medium { font-size: var(--medium); }
+.small { font-size: var(--small); }

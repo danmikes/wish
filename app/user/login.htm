@@ -1,0 +1,41 @@
+{% extends 'base/base.htm' %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('user.static', filename='style.css') }}">
+{% endblock %}
+
+{% block title %}log-in{% endblock %}
+
+{% set _menu=content.menu %}
+{% set _user=content.user %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column mobile-width mt-2">
+        <h1 class="title">{{ _menu.login }}</h1>
+
+        <div class="form-container">
+          <form method="POST" action="{{ url_for('user.user_login') }}">
+            {{ form.hidden_tag() }}
+
+            <div class="field">
+              <label class="label">{{ _user.username }}</label>
+              <div class="control">{{ form.username(class="input") }}</div>
+            </div>
+
+            <div class="field">
+              <label class="label">{{ _user.password }}</label>
+              <div class="control">{{ form.password(class="input") }}</div>
+            </div>
+
+            <div class="field" style="margin-top: 20px;">
+              <button type="submit" class="button green is-fullwidth">{{ _menu.login }}</button>
+            </div>
+          </form>
+        </div>
+      </div>
+  </div>
+</section>
+{% endblock %}

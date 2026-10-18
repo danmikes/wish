@@ -1,0 +1,80 @@
+{% extends 'base/base.htm' %}
+
+{% set _wish=content.wish %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('wish.static', filename='style.css') }}">
+{% endblock %}
+
+{% block title %}{{ _wish.wishes }}{% endblock %}
+
+{% block content %}
+<div class="tabs is-centered">
+  <ul style="margin: 0;">
+    <li id="tab-current-user" class="tab-link is-toggle-rounded it-toggle" data-tab="current-user"><a
+        href="#current-user">{{ current_user.username }}</a></li>
+    {% for user in users_they %}
+    <li class="tab-link is-rounded" data-tab="tab-{{ user.id }}"><a href="#tab-{{ user.id }}">{{ user.username }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+<div id="current-user" class="tab-content">
+  <div class="card-add">
+    <a href="{{ url_for('wish.wish_add') }}" class="button green" style="width: 5rem;">{{ _wish.new }}</a>
+  </div>
+
+  {% if current_user.wishes and current_user.wishes|length > 0 %}
+  <div class="columns is-multiline is-centered is-variable is-3 is-mobile">
+    {% for wish in current_user.wishes %}
+    <div class="column is-narrow">
+      {% set prop = {
+      'id': wish.id,
+      'description': wish.description,
+      'url': wish.url,
+      'image': wish.image,
+      'domain': wish.domain,
+      'is_owner': True,
+      } %}
+      {% include 'wish/card.htm' %}
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="has-text-centered">...</p>
+  {% endif %}
+</div>
+
+{% for user in users_they %}
+<div id="tab-{{ user.id }}" class="tab-content">
+  {% if user.wishes %}
+  <div class="columns is-multiline is-centered is-variable is-3 is-mobile">
+    {% for wish in user.wishes %}
+    <div class="column is-narrow">
+      {% set prop = {
+      'id': wish.id,
+      'description': wish.description,
+      'url': wish.url,
+      'image': wish.image,
+      'domain': wish.domain,
+      'is_bought': wish.is_bought,
+      'owner': wish.owner,
+      'buyer': wish.buyer,
+      'is_owner': False,
+      'is_buyer': wish.buyer.id == current_user.id,
+      } %}
+      {% include 'wish/card.htm' %}
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="has-text-centered">...</p>
+  {% endif %}
+</div>
+{% endfor %}
+{% endblock %}
+
+{% block js %}
+<script src="{{ url_for('wish.static', filename='tab.js') }}"></script>
+{% endblock %}
